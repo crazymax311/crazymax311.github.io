@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<!-- Written by Max Rocans, 2024 -->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>CIS 114 Homework 2 Part 2</title>
+    <meta charset="utf-8">
+    <meta name="description" content="JavaScript Homework 2 Part 2 by Max Rocans">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>CIS 114 Assignments</h1>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="homework1.html">Homework 1</a></li>
+            <li><a href="homework2.html">Homework 2</a></li>
+            <li><a href="homework3.html">Homework 3</a></li>
+            <li><a href="homework4.html">Homework 4</a></li>
+            <li><a href="homework5.html">Homework 5</a></li>
+            <li><a href="homework6.html">Homework 6</a></li>
+            <li><a href="homework7.html">Homework 7</a></li>
+            <li><a href="homework8.html">Homework 8</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <section class="content">
+        <article>
+            <h2>Homework 2 Part 2</h2>
+            
+            <form id="numberForm">
+                <label for="num1">Enter first number:</label>
+                <input type="text" id="num1"><br><br>
+                <label for="num2">Enter second number:</label>
+                <input type="text" id="num2"><br><br>
+                <label for="num3">Enter third number:</label>
+                <input type="text" id="num3"><br><br>
+                
+                <button type="button" onclick="processData()">Calculate</button>
+                <button type="button" onclick="clearForm()">Clear</button>
+            </form>
+            
+            <br>
+
+            <textarea id="results" rows="6" cols="40" readonly></textarea>
+
+            <script>
+                function processData() {
+                    // Get the input values
+                    var num1 = document.getElementById("num1").value;
+                    var num2 = document.getElementById("num2").value;
+                    var num3 = document.getElementById("num3").value;
+                    
+                    // Checks if they are numbers
+                    if (isNaN(num1) || isNaN(num2) || isNaN(num3) || num1 === '' || num2 === '' || num3 === '') {
+                        document.getElementById("results").value = "Error: Please enter valid numbers in all fields.";
+                        return;
+                    }
+                    
+                    // Convert inputs to numbers
+                    num1 = parseFloat(num1);
+                    num2 = parseFloat(num2);
+                    num3 = parseFloat(num3);
+
+                    // Calculate sum, average, and product
+                    var sum = num1 + num2 + num3;
+                    var average = sum / 3;
+                    var product = num1 * num2 * num3;
+                    
+                    // Finds the smallest and largest numbers
+                    var smallest = Math.min(num1, num2, num3);
+                    var largest = Math.max(num1, num2, num3);
+
+                    // Results
+                    document.getElementById("results").value = 
+                        "Sum: " + sum + "\n" +
+                        "Average: " + average + "\n" +
+                        "Product: " + product + "\n" +
+                        "Smallest: " + smallest + "\n" +
+                        "Largest: " + largest;
+                }
+
+                function clearForm() {
+                    // Clear everything
+                    document.getElementById("num1").value = "";
+                    document.getElementById("num2").value = "";
+                    document.getElementById("num3").value = "";
+                    document.getElementById("results").value = "";
+                }
+            </script>
+        </article>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Max Rocans Website</p>
+    </footer>
+</body>
+
+</html>
+
