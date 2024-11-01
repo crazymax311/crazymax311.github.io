@@ -1,0 +1,97 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav {
+    background-color: #444;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Homework2 Styles */
+input[type="text"]:focus {
+    background-color: #e0f7fa; /* Light cyan clicked */
+}
+
+.right-align {
+    text-align: right;
+}
+
+/* General focus styling for accessibility */
+:focus {
+    outline: 3px solid #005fcc; /* Blue outline */
+    outline-offset: 2px;
+}
+
+/* Focus styling for links */
+a:focus {
+    background-color: #e0f0ff; /* Light blue background */
+    color: #005fcc; 
+    border-radius: 4px;
+    padding: 2px 4px;
+    text-decoration: underline;
+}
+
+/* Focus styling for buttons */
+button:focus {
+    outline: 3px solid #ffa500; 
+    background-color: #fffae6; 
+    color: #333; 
+    border-radius: 4px;
+}
+
+/* Focus styling for dropdowns */
+select:focus {
+    outline: 3px solid #32cd32; 
+    background-color: #f0fff0; 
+    border-radius: 4px;
+    color: #333;
+}
+
+/* Focus styling for other form inputs */
+input:focus, textarea:focus {
+    outline: 3px solid #ff4500;
+    background-color: #fff0e0; 
+    color: #333;
+}
