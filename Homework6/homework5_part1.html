@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!-- Written by Max Rocans, 2024 -->
+<html lang="en">
+
+<head>
+    <title>CIS 114 Homework 5 Part 1</title>
+    <meta charset="utf-8">
+    <meta name="description" content="JavaScript Form Validation by Max Rocans">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>CIS 114 Assignments</h1>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="homework1.html">Homework 1</a></li>
+            <li><a href="homework2.html">Homework 2</a></li>
+            <li><a href="homework3.html">Homework 3</a></li>
+            <li><a href="homework4.html">Homework 4</a></li>
+            <li><a href="homework5.html">Homework 5</a></li>
+            <li><a href="homework6.html">Homework 6</a></li>
+            <li><a href="homework7.html">Homework 7</a></li>
+            <li><a href="homework8.html">Homework 8</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>Homework 5 Part 1</h2>
+        <form id="userForm">
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName"><br><br>
+
+            <fieldset>
+                <legend>Age Group</legend>
+                <input type="radio" id="age1" name="ageGroup" value="Under 21">
+                <label for="age1">Under 21</label><br>
+                <input type="radio" id="age2" name="ageGroup" value="21-50">
+                <label for="age2">21-50</label><br>
+                <input type="radio" id="age3" name="ageGroup" value="Over 50">
+                <label for="age3">Over 50</label><br>
+            </fieldset><br>
+
+            <fieldset>
+                <legend>Browsers Used</legend>
+                <input type="checkbox" id="firefox" name="browser" value="Firefox">
+                <label for="firefox">Firefox</label><br>
+                <input type="checkbox" id="edge" name="browser" value="Edge">
+                <label for="edge">Edge</label><br>
+                <input type="checkbox" id="chrome" name="browser" value="Chrome">
+                <label for="chrome">Chrome</label><br>
+                <input type="checkbox" id="safari" name="browser" value="Safari">
+                <label for="safari">Safari</label><br>
+            </fieldset><br>
+
+            <label for="movie">Favorite Movie Type:</label>
+            <select id="movie" name="movie">
+                <option value="">Select</option>
+                <option value="Action">Action</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Drama">Drama</option>
+                <option value="Documentary">Documentary</option>
+                <option value="SciFi">Science Fiction</option>
+            </select><br><br>
+
+            <button type="submit" onclick="validateForm(event)">Submit</button>
+            <button type="reset" onclick="clearOutput()">Clear</button>
+        </form>
+
+        <div id="output" aria-live="polite"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Max Rocans Website</p>
+    </footer>
+
+    <script>
+        function validateForm(event) {
+    event.preventDefault();
+    
+    const name = document.getElementById('fullName').value.trim();
+    const ageGroup = document.querySelector('input[name="ageGroup"]:checked');
+    const browsers = document.querySelectorAll('input[name="browser"]:checked');
+    const movie = document.getElementById('movie').value;
+    const output = document.getElementById('output');
+    output.innerHTML = ''; 
+    let errors = [];
+
+    if (!name) {
+        errors.push("Full Name is required.");
+    }
+    if (!ageGroup) {
+        errors.push("Please select an Age Group.");
+    }
+    if (browsers.length === 0) {
+        errors.push("Please select at least one Browser.");
+    }
+    if (!movie) {
+        errors.push("Please choose a Favorite Movie Type.");
+    }
+
+    if (errors.length > 0) {
+        output.innerHTML = "<ul style='color: red;'>" + errors.map(error => `<li>${error}</li>`).join('') + "</ul>";
+    } else {
+        output.textContent = "Thanks, your data was submitted!";
+        output.style.color = 'green';
+    }
+}
+
+
+        function clearOutput() {
+            const output = document.getElementById('output');
+            output.textContent = ''; // Clears the output message
+        }
+    </script>
+</body>
+
+</html>
