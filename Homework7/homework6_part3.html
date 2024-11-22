@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!-- Written by Max Rocans, 2024 -->
+<html lang="en">
+
+<head>
+    <title>CIS 114 Homework 6 Part 3</title>
+    <meta charset="utf-8">
+    <meta name="description" content="JavaScript Phone Number Validation by Max Rocans">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    
+    <header>
+        <h1>CIS 114 Homework 6 - Part 3</h1>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav role="navigation">
+        <ul>
+            <li><a href="homework1.html" title="Go to Homework 1 Page">Homework 1</a></li>
+            <li><a href="homework2.html" title="Go to Homework 2 Page">Homework 2</a></li>
+            <li><a href="homework3.html" title="Go to Homework 3 Page">Homework 3</a></li>
+            <li><a href="homework4.html" title="Go to Homework 4 Page">Homework 4</a></li>
+            <li><a href="homework5.html" title="Go to Homework 5 Page">Homework 5</a></li>
+            <li><a href="homework6.html" title="Go to Homework 6 Page">Homework 6</a></li>
+            <li><a href="homework7.html" title="Go to Homework 7 Page">Homework 7</a></li>
+            <li><a href="homework8.html" title="Go to Homework 8 Page">Homework 8</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <h2>Homework 6 - Part 3</h2>
+
+        <!-- Form for Phone Number Validation -->
+        <form id="phoneForm">
+            <label for="phoneInput">Enter your 10 digit phone number(Only enter numbers):</label>
+            <input type="text" id="phoneInput" name="phoneInput" placeholder="example:(999) 999-9999" maxlength="14" oninput="formatPhoneNumber(this)">
+            
+            <button type="button" onclick="validatePhoneNumber()" aria-label="Validate Phone Number">Submit</button>
+            <button type="reset" onclick="clearResult()" aria-label="Clear form and result">Clear</button>
+        </form>
+
+        <!-- Result Display Area -->
+        <p id="resultArea" style="margin-top: 20px;" aria-live="polite"></p>
+       
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Max Rocans Website</p>
+    </footer>
+
+    <script>
+    // Automatically format the phone number as (XXX) XXX-XXXX
+    function formatPhoneNumber(input) {
+        let phoneNumber = input.value.replace(/\D/g, ''); // Removes non-digit characters
+        if (phoneNumber.length > 3) {
+            phoneNumber = `(${phoneNumber.substring(0, 3)}) ` + phoneNumber.substring(3);
+        }
+        if (phoneNumber.length > 9) {
+            phoneNumber = phoneNumber.substring(0, 9) + '-' + phoneNumber.substring(9, 14);
+        }
+        input.value = phoneNumber;
+    }
+
+    // Validate phone number format
+    function validatePhoneNumber() {
+        const phoneInput = document.getElementById('phoneInput').value.trim();
+        const resultArea = document.getElementById('resultArea');
+
+        // Regular expression to validate the phone number format (999) 999-9999
+        const phoneRegex = /^\(\d{3}\) \d{3}-\d{4}$/;
+
+        if (phoneRegex.test(phoneInput)) {
+            resultArea.textContent = `Thank you for your phone number! You should expect to be contacted by one of our agents soon.`;
+            resultArea.style.color = "green"; // Success message in green
+        } else {
+            resultArea.textContent = `Error: Please enter a phone number in the correct format: (999) 999-9999.`;
+            resultArea.style.color = "red"; // Error message in red
+        }
+    }
+
+    // Clear result area when form is reset
+    function clearResult() {
+        document.getElementById('resultArea').textContent = '';
+    }
+    </script>
+
+</body>
+
+</html>

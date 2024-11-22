@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!-- Written by Max Rocans, 2024 -->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CIS 114 Homework 4 Part 1</title>
+    <meta charset="utf-8">
+    <meta name="description" content="JavaScript Looping Calculations by Max Rocans">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>CIS 114 Assignments</h1>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="homework1.html">Homework 1</a></li>
+            <li><a href="homework2.html">Homework 2</a></li>
+            <li><a href="homework3.html">Homework 3</a></li>
+            <li><a href="homework4.html">Homework 4</a></li>
+            <li><a href="homework5.html">Homework 5</a></li>
+            <li><a href="homework6.html">Homework 6</a></li>
+            <li><a href="homework7.html">Homework 7</a></li>
+            <li><a href="homework8.html">Homework 8</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <section class="content">
+        <h2>Homework 4 Looping Calculations</h2> <!-- Added a heading for the section -->
+
+        <article>
+            <h3>Homework 4 Part 1</h3>
+            
+            <h4>For Loop - Every Fourth Integer (5 to 25)</h4>
+            <p id="for-loop-result"></p>
+            
+            <h4>While/Do While Loop - Every Third Integer (3 to 18)</h4>
+            <p id="while-loop-result"></p>
+        </article>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Max Rocans Website</p>
+    </footer>
+
+    <script>
+        // For Loop: Calculate product and sum of every fourth integer from 5 to 25
+        let sumFor = 0;
+        let productFor = 1;
+        let forLoopNumbers = []; 
+
+        for (let i = 5; i <= 25; i += 4) {
+            sumFor += i;
+            productFor *= i;
+            forLoopNumbers.push(i); 
+        }
+
+        // Create dynamic string for display
+        let forLoopString = forLoopNumbers.join(" * ");
+        let forLoopSumString = forLoopNumbers.join(" + ");
+
+        // Display results dynamically
+        document.getElementById("for-loop-result").innerHTML = 
+            "The result of " + forLoopString + " is " + productFor.toLocaleString() + ".<br>" +
+            "The result of " + forLoopSumString + " is " + sumFor.toLocaleString() + ".";
+
+        // While Loop: Calculate product and sum of every third integer from 3 to 18
+        let sumWhile = 0;
+        let productWhile = 1;
+        let j = 3;
+        let whileLoopNumbers = []; 
+
+        while (j <= 18) {
+            sumWhile += j;
+            productWhile *= j;
+            whileLoopNumbers.push(j); 
+            j += 3;
+        }
+
+        // Create dynamic string for display
+        let whileLoopString = whileLoopNumbers.join(" * ");
+        let whileLoopSumString = whileLoopNumbers.join(" + ");
+
+        // Display results dynamically
+        document.getElementById("while-loop-result").innerHTML = 
+            "The result of " + whileLoopString + " is " + productWhile.toLocaleString() + ".<br>" +
+            "The result of " + whileLoopSumString + " is " + sumWhile.toLocaleString() + ".";
+    </script>
+</body>
+</html>
