@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!-- Written by Max Rocans, 2024 -->
+<html lang="en">
+
+<head>
+    <title>CIS 114 Homework 7 Part 1</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Javascript Style Picker by Max Rocans">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+		/* Styles for form  */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        #style-area {
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        .underline {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>CIS 114 Assignments</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="homework1.html">Homework 1</a></li>
+            <li><a href="homework2.html">Homework 2</a></li>
+            <li><a href="homework3.html">Homework 3</a></li>
+            <li><a href="homework4.html">Homework 4</a></li>
+            <li><a href="homework5.html">Homework 5</a></li>
+            <li><a href="homework6.html">Homework 6</a></li>
+            <li><a href="homework7.html">Homework 7</a></li>
+            <li><a href="homework8.html">Homework 8</a></li>
+        </ul>
+    </nav>
+
+    <main id="main-content">
+        <h2>Homework 7 - Part 1</h2>
+        <div id="style-area">
+            <p>Hey I just met you and this is crazy.</p>
+            <p>But here's my number.</p>
+            <p>So call me maybe.</p>
+        </div>
+
+        <form id="styleForm">
+            <fieldset>
+                <legend>Background Color: Choose a background color</legend>
+                <label for="lightblue"><input id="lightblue" type="radio" name="bgColor" value="lightblue"> Light Blue</label><br>
+                <label for="red"><input id="red" type="radio" name="bgColor" value="red"> Red</label>
+            </fieldset>
+
+            <fieldset>
+                <legend>Text Styles: Choose text styles</legend>
+                <label for="bold"><input id="bold" type="checkbox" name="textStyle" value="bold"> Bold</label><br>
+                <label for="italic"><input id="italic" type="checkbox" name="textStyle" value="italic"> Italic</label><br>
+                <label for="underline"><input id="underline" type="checkbox" name="textStyle" value="underline"> Underline</label>
+            </fieldset>
+
+            <fieldset>
+                <legend>Font Size: Select font size</legend>
+                <label for="fontSize">Choose font size:</label>
+                <select id="fontSize" name="fontSize">
+                    <option value="1em">Default</option>
+                    <option value="1.5em">150%</option>
+                    <option value="2em">200%</option>
+                </select>
+            </fieldset>
+        </form>
+        
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Max Rocans Website</p>
+    </footer>
+
+    <script>
+        const styleArea = document.getElementById('style-area');
+
+        // Event listener for background color
+        document.querySelectorAll('input[name="bgColor"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                styleArea.style.backgroundColor = e.target.value;
+            });
+        });
+
+        // Event listener for text styles
+        document.querySelectorAll('input[name="textStyle"]').forEach(checkbox => {
+            checkbox.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    styleArea.classList.add(e.target.value);
+                } else {
+                    styleArea.classList.remove(e.target.value);
+                }
+            });
+        });
+
+        // Event listener for font size
+        document.getElementById('fontSize').addEventListener('change', (e) => {
+            styleArea.style.fontSize = e.target.value;
+        });
+    </script>
+</body>
+
+</html>
