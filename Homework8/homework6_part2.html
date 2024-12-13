@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!-- Written by Max Rocans, 2024 -->
+<html lang="en">
+
+<head>
+    <title>CIS 114 Homework 6 Part 2</title>
+    <meta charset="utf-8">
+    <meta name="description" content="JavaScript Character Count by Max Rocans">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+   
+    <header>
+        <h1>CIS 114 Assignments</h1>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav role="navigation">
+        <ul>
+            <li><a href="homework1.html" title="Go to Homework 1 Page">Homework 1</a></li>
+            <li><a href="homework2.html" title="Go to Homework 2 Page">Homework 2</a></li>
+            <li><a href="homework3.html" title="Go to Homework 3 Page">Homework 3</a></li>
+            <li><a href="homework4.html" title="Go to Homework 4 Page">Homework 4</a></li>
+            <li><a href="homework5.html" title="Go to Homework 5 Page">Homework 5</a></li>
+            <li><a href="homework6.html" title="Go to Homework 6 Page">Homework 6</a></li>
+            <li><a href="homework7.html" title="Go to Homework 7 Page">Homework 7</a></li>
+            <li><a href="homework8.html" title="Go to Homework 8 Page">Homework 8</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <h2>Homework 6 - Part 2</h2>
+
+        <!-- Form for Character Search -->
+        <form id="searchForm">
+            <label for="contentInput">Type your content here for character counting:</label>
+            <p>Enter any text in the box below. The program will count how many times a specific character appears.</p>
+            <textarea id="contentInput" rows="6" cols="50" placeholder="Type as much text as you want!"></textarea>
+
+            <label for="charInput">Enter a single character to search for:</label>
+            <input type="text" id="charInput" name="charInput" maxlength="1" placeholder="example: a">
+
+            <button type="button" onclick="countCharacter()" aria-label="Submit character search">Submit</button>
+            <button type="reset" onclick="clearResult()" aria-label="Clear form and result">Clear</button>
+        </form>
+
+        <!-- Result Display Area -->
+        <div id="resultArea" style="margin-top: 20px;" aria-live="polite"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Max Rocans Website</p>
+    </footer>
+
+    <script>
+    function countCharacter() {
+        const content = document.getElementById('contentInput').value;
+        const char = document.getElementById('charInput').value.trim().toLowerCase();
+        const resultArea = document.getElementById('resultArea');
+
+        // Make sure a single character was entered
+        if (char.length !== 1) {
+            resultArea.textContent = "Please enter a single character for search.";
+            return;
+        }
+
+        // Count occurrences of the character 
+        const count = [...content.toLowerCase()].filter(c => c === char).length;
+
+        // Display the count in div or open a window if character is not found
+        if (count > 0) {
+            resultArea.textContent = `The character "${char}" appears ${count} times in the content.`;
+        } else {
+            resultArea.textContent = '';
+            const newWindow = window.open("", "NotFoundWindow", "width=300,height=100,top=300,left=600");
+            newWindow.document.write(`
+                <p>Search character "${char}" not found in the content you typed.</p>
+                <button onclick="window.close()">Close</button>
+            `);
+        }
+    }
+
+    function clearResult() {
+        document.getElementById('resultArea').textContent = '';
+    }
+    </script>
+
+</body>
+
+</html>
