@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!-- Written by Max Rocans, 2024 -->
+<html lang="en">
+
+<head>
+    <title>Homework 8 Extra Credit</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Weather App using OpenWeather API by Max Rocans">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin: 20px;
+        }
+        .error-message {
+            color: red;
+        }
+        #weather-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>CIS 114 Assignments</h1>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav aria-label="Main Navigation">
+        <ul>
+            <li><a href="homework1.html">Homework 1</a></li>
+            <li><a href="homework2.html">Homework 2</a></li>
+            <li><a href="homework3.html">Homework 3</a></li>
+            <li><a href="homework4.html">Homework 4</a></li>
+            <li><a href="homework5.html">Homework 5</a></li>
+            <li><a href="homework6.html">Homework 6</a></li>
+            <li><a href="homework7.html">Homework 7</a></li>
+            <li><a href="homework8.html">Homework 8</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content" role="main">
+        <section class="container">
+            <article>
+                <h2>Homework 8 Extra Credit</h2>
+                <p>Enter a city name below to get its current weather.</p>
+                <form id="weather-form">
+                    <label for="city">City Name:</label>
+                    <input type="text" id="city" name="city" placeholder="e.g., Tokyo, New York, Paris" required>
+                    <button type="submit">Get Weather</button>
+                </form>
+                <div id="weather-container"></div>
+            </article>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <p>&copy; 2024 Max Rocans Website</p>
+    </footer>
+
+    <script>
+       // OpenWeather API key
+		const apiKey = "0d7fb2aa596969f583881c7507bcce35"; 
+
+		// Get references to the form and container where the weather information will be displayed
+		const form = document.getElementById("weather-form");
+		const weatherContainer = document.getElementById("weather-container");
+
+		// Add an event listener to the form to handle the "submit" event
+		form.addEventListener("submit", function(event) {
+		event.preventDefault(); 
+
+		// Get the value of the city input field and trim whitespace
+		const city = document.getElementById("city").value.trim();
+
+		// Check if the input is empty
+		if (!city) {
+        weatherContainer.innerHTML = '<p class="error-message">Please enter a valid city name.</p>';
+        return; 
+    }
+
+		// Construct the URL for the API request and encode the city name to ensure special characters are handled
+		const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${apiKey}&units=metric`;
+
+		// Fetch the weather data from the OpenWeather API
+		fetch(url)
+        .then(response => {
+            // Check if the response is successful 
+            if (!response.ok) {
+                throw new Error("City not found or API error."); // Throw an error if not correct
+            }
+            return response.json(); 
+        })
+        .then(data => {
+            // HTML to display the weather results
+            const weatherHTML = `
+                <h3>Weather in ${data.name}, ${data.sys.country}</h3>
+                <p>Temperature: ${data.main.temp}&#176;C</p>
+                <p>Weather: ${data.weather[0].description}</p>
+                <p>Humidity: ${data.main.humidity}%</p>
+                <p>Wind Speed: ${data.wind.speed} m/s</p>
+            `;
+            weatherContainer.innerHTML = weatherHTML; // Update the container with the weather data
+        })
+        .catch(error => {
+            // Display an error message in case of failure
+            weatherContainer.innerHTML = `<p class="error-message">${error.message}</p>`;
+        });
+});
+
+    </script>
+</body>
+
+</html>
