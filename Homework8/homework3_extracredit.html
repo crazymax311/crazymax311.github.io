@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!-- Written by Max Rocans, 2024 -->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>CIS 114 Homework 3 Extra Credit</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Multiplication Game by Max Rocans">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>CIS 114 Assignments</h1>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="homework1.html">Homework 1</a></li>
+            <li><a href="homework2.html">Homework 2</a></li>
+            <li><a href="homework3.html">Homework 3</a></li>
+            <li><a href="homework4.html">Homework 4</a></li>
+            <li><a href="homework5.html">Homework 5</a></li>
+            <li><a href="homework6.html">Homework 6</a></li>
+            <li><a href="homework7.html">Homework 7</a></li>
+            <li><a href="homework8.html">Homework 8</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <section class="content">
+        <article>
+            <h2>Homework 3 Extra Credit</h2>
+            <p id="question"></p>
+            <form id="gameForm">
+                <label for="answer">Your Answer: </label>
+                <input type="number" id="answer" name="answer" required aria-labelledby="question"><br><br>
+
+                <button type="button" onclick="checkAnswer()">Submit</button>
+            </form>
+            <p id="result"></p>
+            <div id="continuePrompt" style="display:none;">
+                <p>Do you want to keep playing?</p>
+                <button onclick="nextQuestion()">Yes</button>
+                <button onclick="endGame()">No</button>
+            </div>
+
+            <script>
+                let num1, num2; // Variables to hold the two random numbers for multiplication
+                let correctAnswer; // Variable to hold the correct answer
+
+                // Function to generate the next multiplication question
+                function nextQuestion() {
+                    num1 = Math.floor(Math.random() * 10); 
+                    num2 = Math.floor(Math.random() * 10); 
+                    correctAnswer = num1 * num2; 
+                    document.getElementById('question').textContent = `How much is ${num1} times ${num2}?`; 
+                    document.getElementById('result').textContent = ''; 
+                    document.getElementById('answer').value = ''; 
+                    document.getElementById('answer').focus(); 
+                    document.getElementById('continuePrompt').style.display = 'none'; 
+                }
+
+                // Check the user's answer
+                function checkAnswer() {
+                    const answer = parseInt(document.getElementById('answer').value); 
+                    const resultElement = document.getElementById('result'); 
+
+                    // Check if the user's answer is correct
+                    if (answer === correctAnswer) {
+                        resultElement.textContent = "Very good!"; 
+                        document.getElementById('continuePrompt').style.display = 'block'; 
+                    } else {
+                        resultElement.textContent = "No. Please try again."; 
+                    }
+                }
+
+                // Function to end the game and display a thank you 
+                function endGame() {
+                    const resultElement = document.getElementById('result');
+                    resultElement.textContent = "Thanks for playing, see you next time!"; 
+                    document.getElementById('question').textContent = ''; 
+                    document.getElementById('answer').style.display = 'none'; 
+                    document.querySelector("button").style.display = 'none'; 
+                    document.getElementById('continuePrompt').style.display = 'none'; 
+                }
+
+                // Initialize the game by displaying the first question
+                nextQuestion();
+            </script>
+        </article>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Max Rocans Website</p>
+    </footer>
+</body>
+
+</html>
+
+
+

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!-- Written by Max Rocans, 2024 -->
+<html lang="en">
+
+<head>
+    <title>CIS 114 Homework 6 Part 1</title>
+    <meta charset="utf-8">
+    <meta name="description" content="JavaScript Number manipulation by Max Rocans">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">  
+</head>
+
+<body>
+
+    <header>
+        <h1>CIS 114 Assignments</h1>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav role="navigation">
+        <ul>
+            <li><a href="homework1.html" title="Go to Homework 1 Page">Homework 1</a></li>
+            <li><a href="homework2.html" title="Go to Homework 2 Page">Homework 2</a></li>
+            <li><a href="homework3.html" title="Go to Homework 3 Page">Homework 3</a></li>
+            <li><a href="homework4.html" title="Go to Homework 4 Page">Homework 4</a></li>
+            <li><a href="homework5.html" title="Go to Homework 5 Page">Homework 5</a></li>
+            <li><a href="homework6.html" title="Go to Homework 6 Page">Homework 6</a></li>
+            <li><a href="homework7.html" title="Go to Homework 7 Page">Homework 7</a></li>
+            <li><a href="homework8.html" title="Go to Homework 8 Page">Homework 8</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <h2>Homework 6 - Part 1</h2>
+
+        <!-- Form for Number Input -->
+        <form id="numberForm">
+            <label for="numberInput">Enter a number with at least 4 decimal places:</label>
+            <input type="text" id="numberInput" name="numberInput" placeholder="e.g., 123.4567" aria-describedby="resultArea">
+            <button type="button" onclick="processNumber()" aria-label="Submit number">Submit</button>
+            <button type="reset" onclick="clearResult()" aria-label="Clear form and result">Clear</button>
+        </form>
+
+        <!-- Result Display Area -->
+        <div id="resultArea" style="margin-top: 20px;" aria-live="polite"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Max Rocans Website</p>
+    </footer>
+
+    <script>
+        function processNumber() {
+            const input = document.getElementById('numberInput').value.trim();
+            const resultArea = document.getElementById('resultArea');
+
+            // Clear previous styles
+            resultArea.className = '';
+
+            // Validate if the input is a number with at least 4 decimal places
+            if (!/^\d+(\.\d{4,})$/.test(input)) {
+                resultArea.textContent = "You need to type a number with at least 4 decimals, please try again.";
+                resultArea.classList.add('error');
+                return;
+            }
+
+            // Parse the input as a floating-point number
+            const number = parseFloat(input);
+
+            // Calculations
+            const roundedToInt = Math.round(number);
+            const sqrtRounded = Math.round(Math.sqrt(number));
+            const roundedToTenths = number.toFixed(1);
+            const roundedToHundredths = number.toFixed(2);
+            const roundedToThousandths = number.toFixed(3);
+
+            // Display results
+            resultArea.innerHTML = `
+                <p>You typed number ${number}</p>
+                <ul>
+                    <li>Rounded to the nearest integer = ${roundedToInt}</li>
+                    <li>Square root rounded to integer = ${sqrtRounded}</li>
+                    <li>Rounded to the nearest 10th position = ${roundedToTenths}</li>
+                    <li>Rounded to the nearest 100th position = ${roundedToHundredths}</li>
+                    <li>Rounded to the nearest 1000th position = ${roundedToThousandths}</li>
+                </ul>
+            `;
+            resultArea.classList.add('success');
+        }
+
+        // Clears results
+        function clearResult() {
+            const resultArea = document.getElementById('resultArea');
+            resultArea.textContent = '';
+            resultArea.className = '';
+        }
+    </script>
+
+</body>
+
+</html>
